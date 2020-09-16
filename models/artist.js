@@ -14,19 +14,19 @@ module.exports = function(sequelize, DataTypes) {
   });
 
   Artist.associate = models => {
-    Artist.hasMany(models.user, {
+    Artist.hasMany(models.User, {
       foreignKey: "user_id"
     });
   };
 
   Artist.associate = models => {
-    Artist.hasMany(models.instrument, {
+    Artist.hasMany(models.Instrument, {
       foreignKey: "instrument_id"
     });
   };
 
   Artist.associate = models => {
-    Artist.hasMany(models.genre, {
+    Artist.hasMany(models.Genre, {
       foreignKey: "genre_id"
     });
   };

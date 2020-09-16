@@ -8,7 +8,7 @@ module.exports = function(sequelize, DataTypes) {
   });
 
   Genre.associate = models => {
-    Genre.belongsTo(models.artist, {
+    Genre.belongsTo(models.Artist, {
       foreignKey: "artist_id"
     });
   };
