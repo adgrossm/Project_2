@@ -1,6 +1,6 @@
 // Creating our User model
 module.exports = function(sequelize, DataTypes) {
-  const Artist = sequelize.define("Artist", {
+  const Artist = sequelize.define("artist", {
     // The email cannot be null, and must be a proper email before creation
     first_name: {
       type: DataTypes.STRING,
@@ -14,26 +14,20 @@ module.exports = function(sequelize, DataTypes) {
   });
 
   Artist.associate = models => {
-    Artist.belongsTo(models.User, {
-      foreignKey: {
-        allowNull: false
-      }
+    Artist.hasMany(models.user, {
+      foreignKey: "user_id"
     });
   };
 
   Artist.associate = models => {
-    Artist.belongsTo(models.Instrument, {
-      foreignKey: {
-        allowNull: false
-      }
+    Artist.hasMany(models.instrument, {
+      foreignKey: "instrument_id"
     });
   };
 
   Artist.associate = models => {
-    Artist.belongsTo(models.Genre, {
-      foreignKey: {
-        allowNull: false
-      }
+    Artist.hasMany(models.genre, {
+      foreignKey: "genre_id"
     });
   };
 

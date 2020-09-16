@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-  const Instrument = sequelize.define("Instrument", {
+  const Instrument = sequelize.define("instrument", {
     // The email cannot be null, and must be a proper email before creation
     instrument_name: {
       type: DataTypes.STRING,
@@ -8,10 +8,8 @@ module.exports = function(sequelize, DataTypes) {
   });
 
   Instrument.associate = models => {
-    Instrument.belongsTo(models.Artist, {
-      foreignKey: {
-        allowNull: false
-      }
+    Instrument.belongsTo(models.artist, {
+      foreignKey: "artist_id"
     });
   };
 
