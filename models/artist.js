@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 // Creating our User model
 module.exports = function(sequelize, DataTypes) {
   const Artist = sequelize.define("artist", {
