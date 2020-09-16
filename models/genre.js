@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-  const Genre = sequelize.define("Genre", {
+  const Genre = sequelize.define("genre", {
     // The email cannot be null, and must be a proper email before creation
     genre_name: {
       type: DataTypes.STRING,
@@ -8,10 +8,8 @@ module.exports = function(sequelize, DataTypes) {
   });
 
   Genre.associate = models => {
-    Genre.belongsTo(models.Artist, {
-      foreignKey: {
-        allowNull: false
-      }
+    Genre.belongsTo(models.artist, {
+      foreignKey: "artist_id"
     });
   };
 
