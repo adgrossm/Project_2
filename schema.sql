@@ -1,0 +1,2 @@
+DROP DATABASE IF EXISTS musiquery;
+CREATE DATABASE musiquery;
