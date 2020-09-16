@@ -14,5 +14,6 @@ module.exports = function(sequelize, DataTypes) {
 
       user_id: {
         type: 
+        
       }
     });
