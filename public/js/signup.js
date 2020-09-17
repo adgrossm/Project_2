@@ -2,25 +2,24 @@
 $(document).ready(() => {
   // Getting references to our form and input
   const signUpBtn = $("#modalSignUp-id");
-  const firstNameInput = $("#modalSignUp-id");
-  const lastNameInput = $("#modalSignUp-id");
-  const emailInput = $("input#email-input");
-  const passwordInput = $("input#password-input");
-  // const genreInput = $("option#genre-input");
-  // const instrumentInput = $("option#instrument-input");
-  const genreValue = $("#genre-selection option:selected");
-  // would this be changed to option instead of value
-  alert(value.text());
-  const instrumentValue = $("#myselection option:selected");
-  alert(value.text());
+  const firstNameInput = $("#orangeForm-nameF");
+  const lastNameInput = $("#orangeForm-nameL");
+  const emailInput = $("#orangeForm-email");
+  const passwordInput = $("#orangeForm-pass");
 
   // When the signup button is clicked, we validate the email and password are not blank
   signUpBtn.on("click", event => {
     event.preventDefault();
-    const userData = {
+    const artistData = {
       email: emailInput.val().trim(),
+<<<<<<< HEAD
       password: passwordInput.val().trim()
       // adding the genre, instrument values
+=======
+      password: passwordInput.val().trim(),
+      first_name: firstNameInput.val().trim(),
+      last_name: lastNameInput.val().trim()
+>>>>>>> f846f8f851f6c3757e61e5553cde59360c403624
     };
     console.log(userData);
 
@@ -32,23 +31,38 @@ $(document).ready(() => {
     };
     console.log(artistData);
 
-    if (!userData.email || !userData.password) {
+    if (
+      !artistData.email ||
+      !artistData.password ||
+      !artistData.first_name ||
+      !artistData.last_name
+    ) {
       return;
     }
     // If we have an email and password, run the signUpUser function
-    signUpUser(userData.email, userData.password);
+    signUpUser(
+      artistData.email,
+      artistData.password,
+      artistData.first_name,
+      artistData.last_name
+    );
     emailInput.val("");
     passwordInput.val("");
+    firstNameInput.val("");
+    lastNameInput.val("");
   });
 
   // Does a post to the signup route. If successful, we are redirected to the members page
   // Otherwise we log any errors
-  function signUpUser(email, password) {
-    $.post("/api/signup", {
+  function signUpUser(email, password, first_name, last_name) {
+    $.post("/api/user/signup", {
       email: email,
-      password: password
+      password: password,
+      first_name: first_name,
+      last_name: last_name
     })
       .then(() => {
+        // console.log(results);
         window.location.replace("/members");
         // If there's an error, handle it by throwing up a bootstrap alert
       })
