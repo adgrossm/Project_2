@@ -19,7 +19,9 @@ module.exports = function(sequelize, DataTypes) {
     Artist.belongsToMany(models.instrument, {
       through: "artist_instruments"
     });
-    Artist.hasMany(models.genre);
+    Artist.belongsToMany(models.genre, {
+      through: "artist_genre"
+    });
   };
 
   return Artist;

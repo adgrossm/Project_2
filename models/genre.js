@@ -15,7 +15,9 @@ module.exports = function(sequelize, DataTypes) {
   );
 
   Genre.associate = models => {
-    Genre.belongsTo(models.artist);
+    Genre.belongsToMany(models.artist, {
+      through: "artist_genre"
+    });
   };
 
   return Genre;
