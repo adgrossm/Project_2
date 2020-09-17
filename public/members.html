@@ -13,12 +13,27 @@
   <link rel="stylesheet" href="./stylesheets/style.css">
 
   <title>Members</title>
+  <style>
+    #granim-canvas {
+      position: absolute;
+      display: block;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+    }
+  </style>
 </head>
 
 <body>
-  <div class="container">
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark bg-light">
+  <canvas id="granim-canvas"></canvas>
+
+  <main class="container">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark bg-light rounded-bottom">
       <a class="navbar-brand" href="#">Navbar</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,14 +43,14 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
         <select class="custom-select navbar-nav ml-auto pl-2 mr-2">
-          <option selected>Genre</option>
+          <option disabled selected>Genre</option>
           <option value="1">Metal</option>
           <option value="2">Funk</option>
           <option value="3">Jazz</option>
         </select>
 
         <select class="custom-select navbar-nav pl-2">
-          <option selected>Instrument</option>
+          <option disabled selected>Instrument</option>
           <option value="1">Guitar</option>
           <option value="2">Bass</option>
           <option value="3">Drums</option>
@@ -44,7 +59,47 @@
       </div>
     </nav>
 
-  </div>
+    <section class="row bg-dark mt-4 ml-1 mr-1 p-2 rounded">
+      <div class="w-auto m-1 pl-4 pr-4 pt-1 pb-1 bg-light rounded artist-name"><span>Gino Zaccardelli</span></div>
+      <div class="ml-auto m-1 p-1 bg-light rounded artist-genre">Funk</div>
+      <div class="m-1 p-1 bg-light rounded artist-instrument">Bass</div>
+      <div class="row ml-1 mr-1 justify-content-between">
+        <div class="col-8 p-2 bg-light rounded artist-description">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum.
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/granim/2.0.0/granim.min.js"></script>
+  <script>
+    var granimInstance = new Granim({
+      element: "#granim-canvas",
+      direction: "left-right",
+      isPausedWhenNotInView: true,
+      states: {
+        "default-state": {
+          gradients: [
+            [
+              { color: "#833ab4", pos: 0.2 },
+              { color: "#fd1d1d", pos: 0.8 },
+              { color: "#38ef7d", pos: 1 }
+            ],
+            [
+              { color: "#40e0d0", pos: 0 },
+              { color: "#ff8c00", pos: 0.2 },
+              { color: "#ff0080", pos: 0.75 }
+            ]
+          ]
+        }
+      }
+    });
+  </script>
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -57,6 +112,7 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
     integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
     crossorigin="anonymous"></script>
+
 </body>
 
 </html>
