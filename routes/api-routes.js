@@ -17,13 +17,16 @@ module.exports = function (app) {
     });
   });
 
-  app.get("/api/:genre", (req, res) => {
+  app.get("/api/artists/genre/:id", (req, res) => {
     db.artist.findAll({
-      where: {
-        genre_id: req.params.genre
-      }
+      include: [{
+        model: db.genre,
+        //required creates an inner join...
+        required: true,
+        //look to the through table where our genreId matches the selected genre for user on front-end
+        through: { where: { genreId: req.params.id } }
+      }]
     }).then(result => {
-
       res.json(result);
     });
   });
