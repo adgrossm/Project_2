@@ -15,20 +15,12 @@ module.exports = function(sequelize, DataTypes) {
   });
 
   Artist.associate = models => {
-    Artist.hasMany(models.User, {
-      foreignKey: "user_id"
+    Artist.belongsTo(models.user);
+    Artist.belongsToMany(models.instrument, {
+      through: "artist_instruments"
     });
-  };
-
-  Artist.associate = models => {
-    Artist.hasMany(models.instrument, {
-      foreignKey: "instrument_id"
-    });
-  };
-
-  Artist.associate = models => {
-    Artist.hasMany(models.genre, {
-      foreignKey: "genre_id"
+    Artist.belongsToMany(models.genre, {
+      through: "artist_genre"
     });
   };
 

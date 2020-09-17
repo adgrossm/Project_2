@@ -1,8 +1,8 @@
 $(document).ready(() => {
   // Getting references to our form and input
   const signUpBtn = $("#modalSignUp-id");
-  const firstNameInput = $("#modalSignUp-id");
-  const lastNameInput = $("#modalSignUp-id");
+  // const firstNameInput = $("#modalSignUp-id");
+  // const lastNameInput = $("#modalSignUp-id");
   const emailInput = $("input#email-input");
   const passwordInput = $("input#password-input");
 
