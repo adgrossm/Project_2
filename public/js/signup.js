@@ -26,7 +26,12 @@ $(document).ready(() => {
       return;
     }
     // If we have an email and password, run the signUpUser function
-    signUpUser(artistData.email, artistData.password, artistData.first_name, artistData.last_name);
+    signUpUser(
+      artistData.email,
+      artistData.password,
+      artistData.first_name,
+      artistData.last_name
+    );
     emailInput.val("");
     passwordInput.val("");
     firstNameInput.val("");
@@ -42,9 +47,9 @@ $(document).ready(() => {
       first_name: first_name,
       last_name: last_name
     })
-      .then(results => {
+      .then(() => {
         // console.log(results);
-        // window.location.replace("/members");
+        window.location.replace("/members");
         // If there's an error, handle it by throwing up a bootstrap alert
       })
       .catch(handleLoginErr);

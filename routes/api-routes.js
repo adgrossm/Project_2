@@ -54,29 +54,13 @@ module.exports = function (app) {
           last_name: req.body.last_name
         });
       })
-      .then((artist) => {
+      .then(() => {
         res.redirect(307, "/api/members");
-        // console.log(artist);
       })
       .catch(err => {
         res.status(401).json(err);
       });
   });
-
-  // app.post("/api/artist/signup", (req, res) => {
-  //   db.artist.create({
-  //     first_name: req.body.first_name,
-  //     last_name: req.body.last_name
-  //   })
-  //     .then((result) => {
-  //       res.redirect(307, "/api/members");
-  //       console.log(result);
-  //     })
-  //     .catch(err => {
-  //       res.status(401).json(err);
-  //     });
-  // });
-
   // Route for logging user out
   app.get("/logout", (req, res) => {
     req.logout();
