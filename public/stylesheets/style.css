@@ -17,7 +17,12 @@ h1 {
   width: 140px;
 }
 
-.dropdown {
-  width: 250px;
+#button {
+  width: 100%;
+  text-align: center;
 
+}
+
+#dropdown-item {
+  width: 100%;
 }
