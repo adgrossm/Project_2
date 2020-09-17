@@ -21,7 +21,9 @@ $(document).ready(() => {
       email: emailInput.val().trim(),
       password: passwordInput.val().trim()
       // adding the genre, instrument values
-    }
+    };
+    console.log(userData);
+
     const artistData = {
       first_name: firstNameInput.val().trim(),
       last_name: lastNameInput.val().trim(),
