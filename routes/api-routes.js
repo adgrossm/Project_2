@@ -17,6 +17,14 @@ module.exports = function (app) {
     });
   });
 
+  app.get("/api/genres", (req, res) => {
+    db.genre.findAll().then(result => res.json(result));
+  });
+
+  app.get("/api/instruments", (req, res) => {
+    db.instrument.findAll().then(result => res.json(result));
+  });
+
   app.get("/api/artists/genre/:id", (req, res) => {
     db.artist.findAll({
       include: [{
