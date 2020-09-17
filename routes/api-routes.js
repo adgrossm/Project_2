@@ -4,6 +4,7 @@
 // Requiring our models and passport as we've configured it
 const db = require("../models");
 const passport = require("../config/passport");
+const artist = require("../models/artist");
 
 module.exports = function (app) {
   // Using the passport.authenticate middleware with our local strategy.
@@ -54,8 +55,20 @@ module.exports = function (app) {
           last_name: req.body.last_name
         });
       })
+      .then(artist => {
+        return db.artist.create({
+          include: [{
+            model: db.genre,
+            required: true,
+            through: "artist_genre"
+          }],
+          artistId: artist.id,
+          genreId: req.body.genre_value,
+          instrument_value: req.body.instrument_value
+        });
+      })
       .then(() => {
-        res.redirect(307, "/api/members");
+        res.redirect("/members");
       })
       .catch(err => {
         res.status(401).json(err);
