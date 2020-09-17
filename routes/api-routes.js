@@ -11,17 +11,16 @@ module.exports = function (app) {
   // Otherwise the user will be sent an error
   app.post("/api/login", passport.authenticate("local"), (req, res) => {
     // Sending back a password, even a hashed password, isn't a good idea
-    res.json({
-      email: req.user.email,
-      id: req.user.id
-    });
+    res.redirect("/members");
   });
 
-  app.get("/api/:genre", (req, res) => {
+  app.get("/api/artists/genre/:id", (req, res) => {
     db.artist.findAll({
-      where: {
-        genre_id: req.params.genre
-      }
+      include: [{
+        model: db.genre,
+        required: true,
+        through: { where }
+      }]
     }).then(result => {
 
       res.json(result);
