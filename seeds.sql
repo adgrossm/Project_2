@@ -1,4 +1,4 @@
-USE DATABASE musiquery;
+USE musiquery;
 
 INSERT INTO instruments (instrument_name) VALUES ('Guitar');
 INSERT INTO instruments (instrument_name) VALUES ('Bass Guitar');
@@ -12,14 +12,14 @@ INSERT INTO instruments (instrument_name) VALUES ('Synthesizer');
 INSERT INTO instruments (instrument_name) VALUES ('Trombone');
 INSERT INTO instruments (instrument_name) VALUES ('Tamborine');
 
-INSERT INTO genre (genre_name) VALUES ('Soft Rock');
-INSERT INTO genre (genre_name) VALUES ('Hard Rock');
-INSERT INTO genre (genre_name) VALUES ('Country');
-INSERT INTO genre (genre_name) VALUES ('Blues');
-INSERT INTO genre (genre_name) VALUES ('Pop');
-INSERT INTO genre (genre_name) VALUES ('Heavy Metal');
-INSERT INTO genre (genre_name) VALUES ('Grunge');
-INSERT INTO genre (genre_name) VALUES ('R & B');
-INSERT INTO genre (genre_name) VALUES ('Punk');
-INSERT INTO genre (genre_name) VALUES ('Reggae');
-INSERT INTO genre (genre_name) VALUES ('Alternative');
+INSERT INTO genres (genre_name) VALUES ('Soft Rock');
+INSERT INTO genres (genre_name) VALUES ('Hard Rock');
+INSERT INTO genres (genre_name) VALUES ('Country');
+INSERT INTO genres (genre_name) VALUES ('Blues');
+INSERT INTO genres (genre_name) VALUES ('Pop');
+INSERT INTO genres (genre_name) VALUES ('Heavy Metal');
+INSERT INTO genres (genre_name) VALUES ('Grunge');
+INSERT INTO genres (genre_name) VALUES ('R & B');
+INSERT INTO genres (genre_name) VALUES ('Punk');
+INSERT INTO genres (genre_name) VALUES ('Reggae');
+INSERT INTO genres (genre_name) VALUES ('Alternative');
