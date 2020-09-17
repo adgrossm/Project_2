@@ -39,6 +39,20 @@ module.exports = function (app) {
     });
   });
 
+  app.get("/api/artists/instrument/:id", (req, res) => {
+    db.artist.findAll({
+      include: [{
+        model: db.instrument,
+        //required creates an inner join...
+        required: true,
+        //look to the through table where our genreId matches the selected genre for user on front-end
+        through: { where: { instrumentId: req.params.id } }
+      }]
+    }).then(result => {
+      res.json(result);
+    });
+  });
+
   // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
   // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
   // otherwise send back an error
@@ -55,7 +69,7 @@ module.exports = function (app) {
         });
       })
       .then(() => {
-        res.redirect(307, "/api/members");
+        res.redirect(307, "/members");
       })
       .catch(err => {
         res.status(401).json(err);
