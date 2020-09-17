@@ -12,8 +12,7 @@ $("#select-genre-id").on("change", () => {
     .trim();
 
   searchedGenre = searchedGenre.replace(/\s+/g, "").toLowerCase();
-  $.get(`/api/${searchedGenre}`, data => {
-    console.log("OTHER THING HERE");
+  $.get(`/api/artists/genre/${searchedGenre}`, data => {
     console.log(data);
     // $("#well-section").empty();
     // if (!data) {

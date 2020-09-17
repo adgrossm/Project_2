@@ -18,11 +18,12 @@ module.exports = function (app) {
     db.artist.findAll({
       include: [{
         model: db.genre,
+        //required creates an inner join...
         required: true,
-        through: { where }
+        //look to the through table where our genreId matches the selected genre for user on front-end
+        through: { where: { genreId: req.params.id } }
       }]
     }).then(result => {
-
       res.json(result);
     });
   });
