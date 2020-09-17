@@ -17,34 +17,58 @@ module.exports = function (app) {
     });
   });
 
-  app.get("/api/:genre", (req, res) => {
-    // db.Genre.findAll({Artist, {through: artist_genre}}).then(result => {
-    //   res.json(result);
-    // });
+  app.get("/api/artists/genre/:id", (req, res) => {
+    db.artist.findAll({
+      include: [{
+        model: db.genre,
+        //required creates an inner join...
+        required: true,
+        //look to the through table where our genreId matches the selected genre for user on front-end
+        through: { where: { genreId: req.params.id } }
+      }]
+    }).then(result => {
+      res.json(result);
+    });
   });
 
   // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
   // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
   // otherwise send back an error
-  app.post("/api/signup", (req, res) => {
-    db.User.create({
+  app.post("/api/user/signup", (req, res) => {
+    db.user.create({
       email: req.body.email,
-      password: req.body.password,
-      // firstName: req.body.firstName,
-      // lastName: req.body.lastName
+      password: req.body.password
     })
-      .then(() => {
-        res.redirect(307, "/api/login");
+      .then(user => {
+        return db.artist.create({
+          userId: user.id,
+          first_name: req.body.first_name,
+          last_name: req.body.last_name
+        });
+      })
+      .then((artist) => {
+        res.redirect(307, "/api/members");
+        // console.log(artist);
       })
       .catch(err => {
         res.status(401).json(err);
       });
   });
 
-  app.get("/api/signup", (req, res) =>{
-    res.json(result);
-  });
-  
+  // app.post("/api/artist/signup", (req, res) => {
+  //   db.artist.create({
+  //     first_name: req.body.first_name,
+  //     last_name: req.body.last_name
+  //   })
+  //     .then((result) => {
+  //       res.redirect(307, "/api/members");
+  //       console.log(result);
+  //     })
+  //     .catch(err => {
+  //       res.status(401).json(err);
+  //     });
+  // });
+
   // Route for logging user out
   app.get("/logout", (req, res) => {
     req.logout();

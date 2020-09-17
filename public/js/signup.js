@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 $(document).ready(() => {
   // Getting references to our form and input
   const signUpBtn = $("#modalSignUp-id");
@@ -12,42 +13,37 @@ $(document).ready(() => {
     const artistData = {
       email: emailInput.val().trim(),
       password: passwordInput.val().trim(),
-      // firstName: firstNameInput.val().trim(),
-      // lastName: lastNameInput.val().trim()
+      first_name: firstNameInput.val().trim(),
+      last_name: lastNameInput.val().trim()
     };
 
     if (
       !artistData.email ||
       !artistData.password ||
-      // !artistData.firstName ||
-      // !artistData.lastName
+      !artistData.first_name ||
+      !artistData.last_name
     ) {
       return;
     }
     // If we have an email and password, run the signUpUser function
-    signUpUser(
-      artistData.email,
-      artistData.password,
-      // artistData.firstName,
-      // artistData.lastName
-    );
+    signUpUser(artistData.email, artistData.password, artistData.first_name, artistData.last_name);
     emailInput.val("");
     passwordInput.val("");
-    // firstNameInput.val("");
-    // lastNameInput.val("");
+    firstNameInput.val("");
+    lastNameInput.val("");
   });
 
   // Does a post to the signup route. If successful, we are redirected to the members page
   // Otherwise we log any errors
-  function signUpUser(email, password) {
-    $.post("/api/signup", {
+  function signUpUser(email, password, first_name, last_name) {
+    $.post("/api/user/signup", {
       email: email,
       password: password,
-      // firstName: firstName,
-      // lastName: lastName
+      first_name: first_name,
+      last_name: last_name
     })
       .then(results => {
-        console.log(results);
+        // console.log(results);
         // window.location.replace("/members");
         // If there's an error, handle it by throwing up a bootstrap alert
       })
