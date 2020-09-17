@@ -18,14 +18,9 @@ module.exports = function (app) {
   });
 
   app.get("/api/:genre", (req, res) => {
-    db.artist.findAll({
-      where: {
-        genre_id: req.params.genre
-      }
-    }).then(result => {
-
-      res.json(result);
-    });
+    // db.Genre.findAll({Artist, {through: artist_genre}}).then(result => {
+    //   res.json(result);
+    // });
   });
 
   // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
@@ -34,7 +29,9 @@ module.exports = function (app) {
   app.post("/api/signup", (req, res) => {
     db.User.create({
       email: req.body.email,
-      password: req.body.password
+      password: req.body.password,
+      // firstName: req.body.firstName,
+      // lastName: req.body.lastName
     })
       .then(() => {
         res.redirect(307, "/api/login");
@@ -44,6 +41,10 @@ module.exports = function (app) {
       });
   });
 
+  app.get("/api/signup", (req, res) =>{
+    res.json(result);
+  });
+  
   // Route for logging user out
   app.get("/logout", (req, res) => {
     req.logout();
