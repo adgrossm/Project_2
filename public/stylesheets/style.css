@@ -16,3 +16,18 @@ h1 {
 .custom-select {
   width: 140px;
 }
+
+.artist-name {
+  position: relative;
+  bottom: 30px;
+}
+
+.artist-genre, .artist-instrument {
+  width: 140px !important;
+  position: relative;
+  bottom: 30px;
+}
+
+canvas {
+  z-index: -1;
+}
