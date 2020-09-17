@@ -42,18 +42,18 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-        <select class="custom-select navbar-nav ml-auto pl-2 mr-2">
+        <select class="custom-select navbar-nav ml-auto pl-2 mr-2" id="select-genre-id">
           <option disabled selected>Genre</option>
-          <option value="1">Metal</option>
-          <option value="2">Funk</option>
-          <option value="3">Jazz</option>
+          <option value="1">Soft Rock</option>
+          <option value="2">Hard Rock</option>
+          <option value="jazz">Jazz</option>
         </select>
 
-        <select class="custom-select navbar-nav pl-2">
+        <select class="custom-select navbar-nav pl-2" id="select-instrument-id">
           <option disabled selected>Instrument</option>
-          <option value="1">Guitar</option>
-          <option value="2">Bass</option>
-          <option value="3">Drums</option>
+          <option value="guitar">Guitar</option>
+          <option value="bass">Bass</option>
+          <option value="drums">Drums</option>
         </select>
 
       </div>
@@ -61,7 +61,7 @@
 
     <section class="row bg-dark mt-4 ml-1 mr-1 p-2 rounded">
       <div class="w-auto m-1 pl-4 pr-4 pt-1 pb-1 bg-light rounded artist-name"><span>Gino Zaccardelli</span></div>
-      <div class="ml-auto m-1 p-1 bg-light rounded artist-genre">Funk</div>
+      <div class="ml-auto m-1 p-1 bg-light rounded artist-genre">Soft Rock</div>
       <div class="m-1 p-1 bg-light rounded artist-instrument">Bass</div>
       <div class="row ml-1 mr-1 justify-content-between">
         <div class="col-8 p-2 bg-light rounded artist-description">
@@ -100,19 +100,17 @@
       }
     });
   </script>
-
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-    crossorigin="anonymous"></script>
+  integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+  crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
-    crossorigin="anonymous"></script>
-
+  integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+  crossorigin="anonymous"></script>
+  
+  <script type="text/javascript" src="js/members.js"></script>
 </body>
 
 </html>

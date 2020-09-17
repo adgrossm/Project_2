@@ -1,8 +1,11 @@
+/* eslint-disable camelcase */
+/* eslint-disable indent */
+/* eslint-disable prettier/prettier */
 // Requiring our models and passport as we've configured it
 const db = require("../models");
 const passport = require("../config/passport");
 
-module.exports = function(app) {
+module.exports = function (app) {
   // Using the passport.authenticate middleware with our local strategy.
   // If the user has valid login credentials, send them to the members page.
   // Otherwise the user will be sent an error
@@ -11,6 +14,17 @@ module.exports = function(app) {
     res.json({
       email: req.user.email,
       id: req.user.id
+    });
+  });
+
+  app.get("/api/:genre", (req, res) => {
+    db.artist.findAll({
+      where: {
+        genre_id: req.params.genre
+      }
+    }).then(result => {
+
+      res.json(result);
     });
   });
 
