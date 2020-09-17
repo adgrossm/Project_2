@@ -15,8 +15,8 @@ module.exports = function(sequelize, DataTypes) {
   );
 
   Instrument.associate = models => {
-    Instrument.belongsTo(models.artist, {
-      foreignKey: "artist_id"
+    Instrument.belongsToMany(models.artist, {
+      through: "artist_instruments"
     });
   };
 
