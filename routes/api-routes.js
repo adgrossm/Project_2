@@ -4,7 +4,6 @@
 // Requiring our models and passport as we've configured it
 const db = require("../models");
 const passport = require("../config/passport");
-const artist = require("../models/artist");
 
 module.exports = function (app) {
   // Using the passport.authenticate middleware with our local strategy.
@@ -19,21 +18,35 @@ module.exports = function (app) {
   });
 
   app.get("/api/genres", (req, res) => {
-    db.genre.findAll().then(result => res.json(result));
+    db.Genre.findAll().then(result => res.json(result));
   });
 
   app.get("/api/instruments", (req, res) => {
-    db.instrument.findAll().then(result => res.json(result));
+    db.Instrument.findAll().then(result => res.json(result));
   });
 
   app.get("/api/artists/genre/:id", (req, res) => {
     db.artist.findAll({
       include: [{
-        model: db.genre,
+        model: db.Genre,
         //required creates an inner join...
         required: true,
         //look to the through table where our genreId matches the selected genre for user on front-end
         through: { where: { genreId: req.params.id } }
+      }]
+    }).then(result => {
+      res.json(result);
+    });
+  });
+
+  app.get("/api/artists/instrument/:id", (req, res) => {
+    db.artist.findAll({
+      include: [{
+        model: db.Instrument,
+        //required creates an inner join...
+        required: true,
+        //look to the through table where our genreId matches the selected genre for user on front-end
+        through: { where: { instrumentId: req.params.id } }
       }]
     }).then(result => {
       res.json(result);
@@ -56,16 +69,8 @@ module.exports = function (app) {
         });
       })
       .then(artist => {
-        return db.artist.create({
-          include: [{
-            model: db.genre,
-            required: true,
-            through: "artist_genre"
-          }],
-          artistId: artist.id,
-          genreId: req.body.genre_value,
-          instrument_value: req.body.instrument_value
-        });
+        return Promise.all([artist.setInstruments(req.body.instrument_value), artist.setGenres(req.body.genre_value)]);
+        
       })
       .then(() => {
         res.redirect("/members");
@@ -74,6 +79,7 @@ module.exports = function (app) {
         res.status(401).json(err);
       });
   });
+
   // Route for logging user out
   app.get("/logout", (req, res) => {
     req.logout();
