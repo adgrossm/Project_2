@@ -12,11 +12,10 @@ module.exports = function (app) {
   // Otherwise the user will be sent an error
   app.post("/api/login", passport.authenticate("local"), (req, res) => {
     // Sending back a password, even a hashed password, isn't a good idea
-    res.json({
-      email: req.user.email,
-      id: req.user.id
+    succesRedirect: "/members",
+    failureFlash: true
     });
-  });
+
   app.get("/api/genres", (req, res) => {
     db.Genre.findAll().then(result => res.json(result));
   });
@@ -86,7 +85,7 @@ module.exports = function (app) {
   app.get("/api/user_data", (req, res) => {
     if (!req.user) {
       // The user is not logged in, send back an empty object
-      res.json({});
+      res.json("ERROR, email already in use");
     } else {
       // Otherwise send back the user's email and id
       // Sending back a password, even a hashed password, isn't a good idea
