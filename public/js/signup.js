@@ -68,6 +68,8 @@ $(document).ready(() => {
     passwordInput.val("");
     firstNameInput.val("");
     lastNameInput.val("");
+    $("#select-genre-id").prop("selectedIndex", 0);
+    $("#select-instrument-id").prop("selectedIndex", 0);
   });
 
   loginBtn.on("click", event => {
