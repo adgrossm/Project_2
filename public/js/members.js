@@ -20,6 +20,14 @@ $.get("/api/instruments", data => {
   });
 });
 
+const getArtists = () => {
+  $("#select-genre-id").prop("selectedIndex", 0);
+  $("#select-instrument-id").prop("selectedIndex", 0);
+  $.get("/api/artists/all", data => {
+    populateArtists("artist-list-id", data);
+  });
+}
+
 const populateArtists = (elementId, data) => {
   $(`#${elementId}`).empty();
   console.log(data);
@@ -74,9 +82,7 @@ $("#select-instrument-id").on("change", () => {
 });
 
 $("#button-all-id").on("click", () => {
-  $("#select-genre-id").prop("selectedIndex", 0);
-  $("#select-instrument-id").prop("selectedIndex", 0);
-  $.get("/api/artists/all", data => {
-    populateArtists("artist-list-id", data);
-  });
+  getArtists();
 });
+
+getArtists();
