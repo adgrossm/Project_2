@@ -36,8 +36,8 @@ $(document).ready(() => {
       password: passwordInput.val().trim(),
       first_name: firstNameInput.val().trim(),
       last_name: lastNameInput.val().trim(),
-      genre_value: genre_value.index(),
-      instrument_value: instrument_value.index()
+      genre_value: genre_value.val(),
+      instrument_value: instrument_value.val()
     };
     if (
       !artistData.email ||
@@ -82,6 +82,7 @@ $(document).ready(() => {
       .catch(handleLoginErr);
   }
   function handleLoginErr(err) {
+    console.log(err);
     $("#alert .msg").text(err.responseJSON);
     $("#alert").fadeIn(500);
   }
