@@ -24,28 +24,60 @@ module.exports = function (app) {
     db.Instrument.findAll().then(result => res.json(result));
   });
 
-  app.get("/api/artists/genre/:id", (req, res) => {
+  app.get("/api/artists/all", (req, res) => {
     db.artist.findAll({
       include: [{
         model: db.Genre,
-        //required creates an inner join...
         required: true,
-        //look to the through table where our genreId matches the selected genre for user on front-end
-        through: { where: { genreId: req.params.id } }
+      }, {
+        model: db.Instrument,
+        required: true,
       }]
     }).then(result => {
       res.json(result);
     });
   });
 
-  app.get("/api/artists/instrument/:id", (req, res) => {
+  app.get("/api/artists/both/:genreId/:instrumentId", (req, res) => {
     db.artist.findAll({
       include: [{
-        model: db.Instrument,
-        //required creates an inner join...
+        model: db.Genre,
         required: true,
-        //look to the through table where our genreId matches the selected genre for user on front-end
-        through: { where: { instrumentId: req.params.id } }
+        through: { where: { genreId: req.params.genreId } }
+      }, {
+        model: db.Instrument,
+        required: true,
+        through: { where: { instrumentId: req.params.instrumentId } }
+      }]
+    }).then(result => {
+      res.json(result);
+    });
+  });
+
+  app.get("/api/artists/genre/:genreId", (req, res) => {
+    db.artist.findAll({
+      include: [{
+        model: db.Genre,
+        required: true,
+        through: { where: { genreId: req.params.genreId } }
+      }, {
+        model: db.Instrument,
+        required: true
+      }]
+    }).then(result => {
+      res.json(result);
+    });
+  });
+
+  app.get("/api/artists/instrument/:instrumentId", (req, res) => {
+    db.artist.findAll({
+      include: [{
+        model: db.Genre,
+        required: true,
+      }, {
+        model: db.Instrument,
+        required: true,
+        through: { where: { instrumentId: req.params.instrumentId } }
       }]
     }).then(result => {
       res.json(result);
@@ -69,7 +101,7 @@ module.exports = function (app) {
       })
       .then(artist => {
         return Promise.all([artist.setInstruments(req.body.instrument_value), artist.setGenres(req.body.genre_value)]);
-        
+
       })
       .then(() => {
         res.redirect("/members");
