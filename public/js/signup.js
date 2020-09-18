@@ -6,6 +6,9 @@ $(document).ready(() => {
   const lastNameInput = $("#orangeForm-nameL");
   const emailInput = $("#orangeForm-email");
   const passwordInput = $("#orangeForm-pass");
+  const loginBtn = $("#modalLogin-id");
+  const loginEmailInput = $("#orangeForm-email-login");
+  const loginPasswordInput = $("#orangeForm-pass-login");
 
   $.get("/api/genres", data => {
     $("#select-genre-id").empty();
@@ -65,11 +68,35 @@ $(document).ready(() => {
     passwordInput.val("");
     firstNameInput.val("");
     lastNameInput.val("");
+    $("#select-genre-id").prop("selectedIndex", 0);
+    $("#select-instrument-id").prop("selectedIndex", 0);
+  });
+
+  loginBtn.on("click", event => {
+    event.preventDefault();
+    const loginData = {
+      email: loginEmailInput.val().trim(),
+      password: loginPasswordInput.val().trim()
+    };
+    if (!loginData.email || !loginData.password) {
+      return;
+    }
+    // If we have an email and password, run the signUpUser function
+    loginUser(loginData.email, loginData.password);
+    emailInput.val("");
+    passwordInput.val("");
   });
 
   // Does a post to the signup route. If successful, we are redirected to the members page
   // Otherwise we log any errors
-  function signUpUser(email, password, first_name, last_name, genre_value, instrument_value) {
+  function signUpUser(
+    email,
+    password,
+    first_name,
+    last_name,
+    genre_value,
+    instrument_value
+  ) {
     $.post("/api/user/signup", {
       email: email,
       password: password,
@@ -83,12 +110,33 @@ $(document).ready(() => {
         window.location.replace("/members");
         // If there's an error, handle it by throwing up a bootstrap alert
       })
+      .catch(handleSignInErr);
+  }
+
+  function handleSignInErr(err) {
+    console.log(err);
+    // $("#alert .msg").text("User Already Exists, Please Login!");
+    $("#email-exist")
+      .text("Email: Currently Exists, Please Login!")
+      .css("color", "red");
+    // $("#alert").fadeIn(500);
+  }
+
+  function loginUser(email, password) {
+    $.post("/api/login", {
+      email: email,
+      password: password
+    })
+      .then(() => {
+        // console.log(results);
+        window.location.replace("/members");
+        // If there's an error, handle it by throwing up a bootstrap alert
+      })
       .catch(handleLoginErr);
   }
 
   function handleLoginErr(err) {
     console.log(err);
-    $("#alert .msg").text(err.responseJSON);
-    $("#alert").fadeIn(500);
+    $("#loginFoot").prepend("<label>Wrong Email or Password...</label>");
   }
 });

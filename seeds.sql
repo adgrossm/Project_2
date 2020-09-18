@@ -29,10 +29,10 @@ INSERT INTO artists (first_name, last_name, createdAt, updatedAt) VALUES ('Colli
 INSERT INTO artists (first_name, last_name, createdAt, updatedAt) VALUES ('Adam', 'Grossman', now(), now());
 INSERT INTO artists (first_name, last_name, createdAt, updatedAt) VALUES ('Ryan', 'Brooks', now(), now());
 
-INSERT INTO users (email, password, createdAt, updatedAt) VALUES ('test@test.com', 'rootroot', now(), now());
-INSERT INTO users (email, password, createdAt, updatedAt) VALUES ('example@example.com', 'rootroot', now(), now());
-INSERT INTO users (email, password, createdAt, updatedAt) VALUES ('testing@testing.com', 'rootroot', now(), now());
-INSERT INTO users (email, password, createdAt, updatedAt) VALUES ('examples@examples.com', 'rootroot', now(), now());
+INSERT INTO Users (email, password, createdAt, updatedAt) VALUES ('test@test.com', 'rootroot', now(), now());
+INSERT INTO Users (email, password, createdAt, updatedAt) VALUES ('example@example.com', 'rootroot', now(), now());
+INSERT INTO Users (email, password, createdAt, updatedAt) VALUES ('testing@testing.com', 'rootroot', now(), now());
+INSERT INTO Users (email, password, createdAt, updatedAt) VALUES ('examples@examples.com', 'rootroot', now(), now());
 
 INSERT INTO artist_genre (artistId, genreId, createdAt, updatedAt) VALUES (1, 1, NOW(), NOW());
 
