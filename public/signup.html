@@ -38,19 +38,23 @@
             <path d="M5 2.905a1 1 0 0 1 .9-.995l8-.8a1 1 0 0 1 1.1.995V3L5 4V2.905z" />
           </svg></h1>
         <br><br><br><br>
+
+        
         <div style="display: none" id="alert" class="alert alert-danger" role="alert">
           <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
           <span class="sr-only">Error:</span> <span class="msg"></span>
         </div>
         <div class="col text-center">
           <div col-md-4>
-            <button type="submit" class="btn btn-secondary" data-toggle="modal" data-target="#modalRegisterForm">Sign
-              Up</button>
-          </div>
-          <div col-md-4></div><br>
+            <!-- <button type="submit" class="btn btn-secondary" data-toggle="modal" data-target="#modalRegisterForm">Sign
+              Up</button> -->
+              <a id="anchor" data-toggle="modal" href="#modalRegisterForm">SIGN UP</a>
+              <a id="anchor" data-toggle="modal" href="#modalSignInForm">LOGIN</a>
+            </div>
+            <div col-md-4></div><br>
           <div col-md-4>
-            <button type="submit" class="btn btn-secondary" data-toggle="modal"
-              data-target="#modalSignInForm">Login</button>
+            <!-- <button type="submit" class="btn btn-secondary" data-toggle="modal"
+              data-target="#modalSignInForm">Login</button> -->
           </div>
         </div>
         </form>
@@ -160,7 +164,6 @@
             <label data-error="wrong" data-success="right" for="orangeForm-email">Email:</label>
             <input type="email" id="orangeForm-email-login" class="form-control validate" placeholder="Email">
           </div>
-
           <div class="md-form mb-3">
             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-music-note" fill="currentColor"
               xmlns="http://www.w3.org/2000/svg">

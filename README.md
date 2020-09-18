@@ -5,7 +5,7 @@
 ## ---------------
 ## Table of Contents
 1. [User Story](#User-Story)
-2. [Link to Website](#Link-to-Website )
+2. [Links to Websites](#Links-to-Websites)
 3. [Technologies Utilized](#Technologies-Utilized)
 4. [Challenges and Successes](#Challenges-and-Successes)
 5. [Demo](#Demo)
@@ -20,8 +20,10 @@
 > <ins>SO THAT</ins> I can generate networking opportunities
 
 ## ---------------
-## Link to Website
-[MusiQuery](http://github.com)
+## Links to Websites
+[MusiQuery](http://#)
+
+[GitHub](https://github.com/Toomuchbob/Project_2)
 
 ## ---------------
 ## Technologies Utilized
@@ -29,6 +31,7 @@
 * Bootstrap
 * MySQL
 * Sequelize
+* API routes
 * Granim.js
 * ES Lint
 * Travis CI
@@ -40,8 +43,11 @@
 
 ## ---------------
 ## Challenges and Successes
-* Difficulty implementing Granim gradient background.
+* Difficulty implementing Granim background
 * Challenge with creating through databases
+* Success with creating sleek UI
+* Success with creating modals for signup and login
+* Success in creating joins through API routes
 
 ## ---------------
 ## Demo
@@ -52,3 +58,5 @@
 ## Future Development
 * Users able to add profile picture
 * Users able to search artists by location
+* Users able to rate other users
+* Users able to search classifieds for networking or career opportunities

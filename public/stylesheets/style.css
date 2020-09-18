@@ -8,6 +8,19 @@ h1 {
   font-size: 175px;
 }
 
+#anchor {
+  display: inline-block;
+  padding: 5px 10px;
+  margin-right: 15px;
+  border: solid 1px;
+  color: inherit;
+  text-transform: uppercase;
+  text-decoration: none;
+  box-shadow: 1 1 1;
+  transition: box-shadow 1s;
+  font-weight: bold;
+}
+
 .btn {
   width: 200px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
