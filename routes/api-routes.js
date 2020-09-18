@@ -10,13 +10,12 @@ module.exports = function (app) {
   // If the user has valid login credentials, send them to the members page.
   // Otherwise the user will be sent an error
   app.post("/api/login", passport.authenticate("local"), (req, res) => {
-    // Sending back a password, even a hashed password, isn't a good idea
     res.json({
       email: req.user.email,
       id: req.user.id
     });
   });
-
+  
   app.get("/api/genres", (req, res) => {
     db.Genre.findAll().then(result => res.json(result));
   });
@@ -89,13 +88,13 @@ module.exports = function (app) {
   // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
   // otherwise send back an error
   app.post("/api/user/signup", (req, res) => {
-    db.user.create({
+    db.User.create({
       email: req.body.email,
       password: req.body.password
     })
-      .then(user => {
+      .then(User => {
         return db.artist.create({
-          userId: user.id,
+          userId: User.id,
           first_name: req.body.first_name,
           last_name: req.body.last_name
         });
