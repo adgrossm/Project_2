@@ -18,17 +18,17 @@ module.exports = function (app) {
   });
 
   app.get("/api/genres", (req, res) => {
-    db.genre.findAll().then(result => res.json(result));
+    db.Genre.findAll().then(result => res.json(result));
   });
 
   app.get("/api/instruments", (req, res) => {
-    db.instrument.findAll().then(result => res.json(result));
+    db.Instrument.findAll().then(result => res.json(result));
   });
 
   app.get("/api/artists/genre/:id", (req, res) => {
     db.artist.findAll({
       include: [{
-        model: db.genre,
+        model: db.Genre,
         //required creates an inner join...
         required: true,
         //look to the through table where our genreId matches the selected genre for user on front-end
@@ -42,7 +42,7 @@ module.exports = function (app) {
   app.get("/api/artists/instrument/:id", (req, res) => {
     db.artist.findAll({
       include: [{
-        model: db.instrument,
+        model: db.Instrument,
         //required creates an inner join...
         required: true,
         //look to the through table where our genreId matches the selected genre for user on front-end
@@ -68,13 +68,18 @@ module.exports = function (app) {
           last_name: req.body.last_name
         });
       })
+      .then(artist => {
+        return Promise.all([artist.setInstruments(req.body.instrument_value), artist.setGenres(req.body.genre_value)]);
+        
+      })
       .then(() => {
-        res.redirect(307, "/members");
+        res.redirect("/members");
       })
       .catch(err => {
         res.status(401).json(err);
       });
   });
+
   // Route for logging user out
   app.get("/logout", (req, res) => {
     req.logout();
