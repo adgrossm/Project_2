@@ -137,6 +137,6 @@ $(document).ready(() => {
 
   function handleLoginErr(err) {
     console.log(err);
-    $("#loginFoot").prepend("<label>Wrong Email or Password...</label>");
+    $("#loginFoot").prepend("<label>Wrong Email or Password...Please try again!</label>");
   }
 });
