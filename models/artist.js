@@ -11,6 +11,10 @@ module.exports = function(sequelize, DataTypes) {
     last_name: {
       type: DataTypes.STRING,
       allowNull: false
+    },
+    artist_bio: {
+      type: DataTypes.TEXT,
+      allowNull: false
     }
   });
 
