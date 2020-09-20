@@ -13,7 +13,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     },
     artist_bio: {
-      type: DataTypes.TEXT,
+      type: DataTypes.STRING,
       allowNull: false
     }
   });
