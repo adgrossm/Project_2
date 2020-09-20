@@ -11,39 +11,73 @@ module.exports = function (app) {
   // If the user has valid login credentials, send them to the members page.
   // Otherwise the user will be sent an error
   app.post("/api/login", passport.authenticate("local"), (req, res) => {
-    // Sending back a password, even a hashed password, isn't a good idea
-    succesRedirect: "/members",
-    failureFlash: true
+    res.json({
+      email: req.user.email,
+      id: req.user.id
     });
-
+  });
+  
   app.get("/api/genres", (req, res) => {
     db.Genre.findAll().then(result => res.json(result));
   });
   app.get("/api/instruments", (req, res) => {
     db.Instrument.findAll().then(result => res.json(result));
   });
-  app.get("/api/artists/genre/:id", (req, res) => {
+
+  app.get("/api/artists/all", (req, res) => {
     db.artist.findAll({
       include: [{
         model: db.Genre,
-        //required creates an inner join...
         required: true,
-        //look to the through table where our genreId matches the selected genre for user on front-end
-        through: { where: { genreId: req.params.id } }
+      }, {
+        model: db.Instrument,
+        required: true,
       }]
     }).then(result => {
       res.json(result);
     });
   });
 
-  app.get("/api/artists/instrument/:id", (req, res) => {
+  app.get("/api/artists/both/:genreId/:instrumentId", (req, res) => {
     db.artist.findAll({
       include: [{
-        model: db.Instrument,
-        //required creates an inner join...
+        model: db.Genre,
         required: true,
-        //look to the through table where our genreId matches the selected genre for user on front-end
-        through: { where: { instrumentId: req.params.id } }
+        through: { where: { genreId: req.params.genreId } }
+      }, {
+        model: db.Instrument,
+        required: true,
+        through: { where: { instrumentId: req.params.instrumentId } }
+      }]
+    }).then(result => {
+      res.json(result);
+    });
+  });
+
+  app.get("/api/artists/genre/:genreId", (req, res) => {
+    db.artist.findAll({
+      include: [{
+        model: db.Genre,
+        required: true,
+        through: { where: { genreId: req.params.genreId } }
+      }, {
+        model: db.Instrument,
+        required: true
+      }]
+    }).then(result => {
+      res.json(result);
+    });
+  });
+
+  app.get("/api/artists/instrument/:instrumentId", (req, res) => {
+    db.artist.findAll({
+      include: [{
+        model: db.Genre,
+        required: true,
+      }, {
+        model: db.Instrument,
+        required: true,
+        through: { where: { instrumentId: req.params.instrumentId } }
       }]
     }).then(result => {
       res.json(result);
@@ -53,20 +87,21 @@ module.exports = function (app) {
   // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
   // otherwise send back an error
   app.post("/api/user/signup", (req, res) => {
-    db.user.create({
+    db.User.create({
       email: req.body.email,
       password: req.body.password
     })
-      .then(user => {
+      .then(User => {
         return db.artist.create({
-          userId: user.id,
+          userId: User.id,
           first_name: req.body.first_name,
-          last_name: req.body.last_name
+          last_name: req.body.last_name,
+          artist_bio: req.body.artist_bio
         });
       })
       .then(artist => {
         return Promise.all([artist.setInstruments(req.body.instrument_value), artist.setGenres(req.body.genre_value)]);
-        
+
       })
       .then(() => {
         res.redirect("/members");

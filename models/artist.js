@@ -11,11 +11,15 @@ module.exports = function(sequelize, DataTypes) {
     last_name: {
       type: DataTypes.STRING,
       allowNull: false
+    },
+    artist_bio: {
+      type: DataTypes.TEXT,
+      allowNull: false
     }
   });
 
   Artist.associate = models => {
-    Artist.belongsTo(models.user);
+    Artist.belongsTo(models.User);
     Artist.belongsToMany(models.Instrument, {
       through: "artist_instruments"
     });
