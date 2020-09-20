@@ -12,7 +12,6 @@ $(document).ready(() => {
   // adding the artist_bio input
   const artistBioInput = $("#orangeForm-bio");
 
-
   $.get("/api/genres", data => {
     $("#select-genre-id").empty();
     $("#select-genre-id").append("<option disabled selected>Genre</option>");
@@ -143,6 +142,8 @@ $(document).ready(() => {
   }
   function handleLoginErr(err) {
     console.log(err);
-    $("#loginFoot").prepend("<label>Wrong Email or Password...Please try again!</label>");
+    $("#loginFoot").prepend(
+      "<label>Wrong Email or Password...Please try again!</label>"
+    );
   }
 });
