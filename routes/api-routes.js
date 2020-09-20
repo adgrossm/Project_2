@@ -5,6 +5,7 @@
 const db = require("../models");
 const passport = require("../config/passport");
 
+
 module.exports = function (app) {
   // Using the passport.authenticate middleware with our local strategy.
   // If the user has valid login credentials, send them to the members page.
@@ -19,7 +20,6 @@ module.exports = function (app) {
   app.get("/api/genres", (req, res) => {
     db.Genre.findAll().then(result => res.json(result));
   });
-
   app.get("/api/instruments", (req, res) => {
     db.Instrument.findAll().then(result => res.json(result));
   });
@@ -83,7 +83,6 @@ module.exports = function (app) {
       res.json(result);
     });
   });
-
   // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
   // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
   // otherwise send back an error
@@ -96,7 +95,8 @@ module.exports = function (app) {
         return db.artist.create({
           userId: User.id,
           first_name: req.body.first_name,
-          last_name: req.body.last_name
+          last_name: req.body.last_name,
+          artist_bio: req.body.artist_bio
         });
       })
       .then(artist => {
@@ -116,12 +116,11 @@ module.exports = function (app) {
     req.logout();
     res.redirect("/");
   });
-
   // Route for getting some data about our user to be used client side
   app.get("/api/user_data", (req, res) => {
     if (!req.user) {
       // The user is not logged in, send back an empty object
-      res.json({});
+      res.json("ERROR, email already in use");
     } else {
       // Otherwise send back the user's email and id
       // Sending back a password, even a hashed password, isn't a good idea
@@ -132,3 +131,8 @@ module.exports = function (app) {
     }
   });
 };
+
+
+
+
+

@@ -24,10 +24,10 @@ INSERT INTO Genres (genre_name) VALUES ('Punk');
 INSERT INTO Genres (genre_name) VALUES ('Reggae');
 INSERT INTO Genres (genre_name) VALUES ('Alternative');
 
-INSERT INTO artists (first_name, last_name, createdAt, updatedAt) VALUES ('Gino', 'Zaccardelli', now(), now());
-INSERT INTO artists (first_name, last_name, createdAt, updatedAt) VALUES ('Collin', 'Lanier', now(), now());
-INSERT INTO artists (first_name, last_name, createdAt, updatedAt) VALUES ('Adam', 'Grossman', now(), now());
-INSERT INTO artists (first_name, last_name, createdAt, updatedAt) VALUES ('Ryan', 'Brooks', now(), now());
+INSERT INTO artists (first_name, last_name, artist_bio, createdAt, updatedAt) VALUES ('Gino', 'Zaccardelli', "teadfsetasetaertasetaetweate", now(), now());
+INSERT INTO artists (first_name, last_name, artist_bio, createdAt, updatedAt) VALUES ('Collin', 'Lanier', "teadfsetasetaertasetaetweate", now(), now());
+INSERT INTO artists (first_name, last_name, artist_bio, createdAt, updatedAt) VALUES ('Adam', 'Grossman', "teadfsetasetaertasetaetweate", now(), now());
+INSERT INTO artists (first_name, last_name, artist_bio, createdAt, updatedAt) VALUES ('Ryan', 'Brooks', "teadfsetasetaertasetaetweate", now(), now());
 
 INSERT INTO Users (email, password, createdAt, updatedAt) VALUES ('test@test.com', 'rootroot', now(), now());
 INSERT INTO Users (email, password, createdAt, updatedAt) VALUES ('example@example.com', 'rootroot', now(), now());

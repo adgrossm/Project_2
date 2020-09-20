@@ -9,6 +9,9 @@ $(document).ready(() => {
   const loginBtn = $("#modalLogin-id");
   const loginEmailInput = $("#orangeForm-email-login");
   const loginPasswordInput = $("#orangeForm-pass-login");
+  // adding the artist_bio input
+  const artistBioInput = $("#orangeForm-bio");
+
 
   $.get("/api/genres", data => {
     $("#select-genre-id").empty();
@@ -19,7 +22,6 @@ $(document).ready(() => {
       );
     });
   });
-
   $.get("/api/instruments", data => {
     $("#select-instrument-id").empty();
     $("#select-instrument-id").append(
@@ -31,7 +33,6 @@ $(document).ready(() => {
       );
     });
   });
-
   // When the signup button is clicked, we validate the email and password are not blank
   signUpBtn.on("click", event => {
     event.preventDefault();
@@ -43,7 +44,9 @@ $(document).ready(() => {
       first_name: firstNameInput.val().trim(),
       last_name: lastNameInput.val().trim(),
       genre_value: genre_value.val(),
-      instrument_value: instrument_value.val()
+      instrument_value: instrument_value.val(),
+      // adding artist_bio value
+      artist_bio: artistBioInput.val()
     };
     if (
       !artistData.email ||
@@ -51,7 +54,8 @@ $(document).ready(() => {
       !artistData.first_name ||
       !artistData.last_name ||
       !artistData.genre_value ||
-      !artistData.instrument_value
+      !artistData.instrument_value ||
+      !artistData.artist_bio
     ) {
       return;
     }
@@ -62,12 +66,14 @@ $(document).ready(() => {
       artistData.first_name,
       artistData.last_name,
       artistData.genre_value,
-      artistData.instrument_value
+      artistData.instrument_value,
+      artistData.artist_bio
     );
     emailInput.val("");
     passwordInput.val("");
     firstNameInput.val("");
     lastNameInput.val("");
+    artistBioInput.val("");
     $("#select-genre-id").prop("selectedIndex", 0);
     $("#select-instrument-id").prop("selectedIndex", 0);
   });
@@ -86,7 +92,6 @@ $(document).ready(() => {
     emailInput.val("");
     passwordInput.val("");
   });
-
   // Does a post to the signup route. If successful, we are redirected to the members page
   // Otherwise we log any errors
   function signUpUser(
@@ -95,7 +100,8 @@ $(document).ready(() => {
     first_name,
     last_name,
     genre_value,
-    instrument_value
+    instrument_value,
+    artist_bio
   ) {
     $.post("/api/user/signup", {
       email: email,
@@ -103,7 +109,8 @@ $(document).ready(() => {
       first_name: first_name,
       last_name: last_name,
       genre_value: genre_value,
-      instrument_value: instrument_value
+      instrument_value: instrument_value,
+      artist_bio: artist_bio
     })
       .then(() => {
         // console.log(results);
@@ -134,9 +141,8 @@ $(document).ready(() => {
       })
       .catch(handleLoginErr);
   }
-
   function handleLoginErr(err) {
     console.log(err);
-    $("#loginFoot").prepend("<label>Wrong Email or Password...</label>");
+    $("#loginFoot").prepend("<label>Wrong Email or Password...Please try again!</label>");
   }
 });
