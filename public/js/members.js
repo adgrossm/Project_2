@@ -26,7 +26,7 @@ const getArtists = () => {
   $.get("/api/artists/all", data => {
     populateArtists("artist-list-id", data);
   });
-}
+};
 
 const populateArtists = (elementId, data) => {
   $(`#${elementId}`).empty();

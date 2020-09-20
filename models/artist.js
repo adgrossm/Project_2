@@ -11,6 +11,13 @@ module.exports = function(sequelize, DataTypes) {
     last_name: {
       type: DataTypes.STRING,
       allowNull: false
+    },
+    bio: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      validate: {
+        len: [0, 300]
+      }
     }
   });
 
