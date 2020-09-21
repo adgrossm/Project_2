@@ -34,7 +34,7 @@ const populateArtists = (elementId, data) => {
   if (data.length > 0) {
     data.forEach(e => {
       $(`#${elementId}`).append(
-        `<section class="row bg-dark mt-4 ml-1 mr-1 p-2 rounded">
+        `<section class="row bg-dark mt-5 ml-1 mr-1 p-2 rounded">
        <div class="w-auto m-1 pl-4 pr-4 pt-1 pb-1 bg-light rounded artist-name">${e.first_name} ${e.last_name}</div>
        <div class="ml-auto m-1 p-1 bg-light rounded artist-genre">${e.Genres[0].genre_name}</div>
        <div class="m-1 p-1 bg-light rounded artist-instrument">${e.Instruments[0].instrument_name}</div>

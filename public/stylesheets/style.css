@@ -70,3 +70,7 @@ canvas {
   font-size: xx-large;
   text-shadow: rgb(173, 173, 173);
 }
+
+#margin-bottom {
+  margin-bottom: 10px;
+}
