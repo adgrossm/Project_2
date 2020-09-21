@@ -104,7 +104,7 @@ module.exports = function (app) {
 
       })
       .then(() => {
-        res.redirect("/members");
+        res.redirect(307, "/api/login");
       })
       .catch(err => {
         res.status(401).json(err);
@@ -116,7 +116,7 @@ module.exports = function (app) {
     req.logout();
     res.redirect("/");
   });
-  
+
   // Route for getting some data about our user to be used client side
   app.get("/api/user_data", (req, res) => {
     if (!req.user) {
