@@ -1,6 +1,6 @@
 # MusiQuery
 
-## MusiQuery is an application built for artists in the music industry who are looking to associate, network, and generate income opportunities with other artists and industry professionals.
+## MusiQuery is an application built for artists in the music industry who are looking for networking opportunities with other artists and industry professionals.
 
 ## ---------------
 ## Table of Contents
@@ -21,7 +21,7 @@
 
 ## ---------------
 ## Links to Websites
-[MusiQuery](http://#)
+[MusiQuery](http://project-2-agrc.herokuapp.com/)
 
 [GitHub](https://github.com/Toomuchbob/Project_2)
 
