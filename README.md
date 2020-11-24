@@ -21,7 +21,8 @@
 
 ## ---------------
 ## Links to Websites
-[MusiQuery](http://project-2-agrc.herokuapp.com/)
+[MusiQuery](https://project-2-agrc.herokuapp.com/)
+
 
 [GitHub](https://github.com/Toomuchbob/Project_2)
 
